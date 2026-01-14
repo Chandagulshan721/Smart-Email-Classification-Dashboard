@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Classification Dashboard</title>
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>Email Classification Dashboard</h1>
+
+<div class="container">
+
+    <!-- INTERVIEW COLUMN -->
+    <div class="column interview">
+        <h2>Interview</h2>
+
+        {% if data["INTERVIEW"] %}
+            {% for email in data["INTERVIEW"] %}
+                <div class="card high">
+                    <p>
+                        <strong>
+                            <a href="{{ email.url }}" target="_blank">
+                                {{ email.subject }}
+                            </a>
+                        </strong>
+                    </p>
+                    <p>Priority: {{ email.priority }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty">No Interview Emails</p>
+        {% endif %}
+    </div>
+
+    <!-- ONLINE JOB COLUMN -->
+    <div class="column jobs">
+        <h2>Online Jobs</h2>
+
+        {% if data["ONLINE JOB"] %}
+            {% for email in data["ONLINE JOB"] %}
+                <div class="card medium">
+                    <p>
+                        <strong>
+                            <a href="{{ email.url }}" target="_blank">
+                                {{ email.subject }}
+                            </a>
+                        </strong>
+                    </p>
+                    <p>Priority: {{ email.priority }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty">No Job Emails</p>
+        {% endif %}
+    </div>
+
+    <!-- SOCIAL ADS COLUMN -->
+    <div class="column ads">
+        <h2>Social Ads</h2>
+
+        {% if data["SOCIAL ADS"] %}
+            {% for email in data["SOCIAL ADS"] %}
+                <div class="card low">
+                    <p>
+                        <strong>
+                            <a href="{{ email.url }}" target="_blank">
+                                {{ email.subject }}
+                            </a>
+                        </strong>
+                    </p>
+                    <p>Priority: {{ email.priority }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty">No Ads Emails</p>
+        {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>
